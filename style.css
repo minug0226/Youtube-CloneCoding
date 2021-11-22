@@ -46,7 +46,7 @@ button:focus {
 header {
     display: flex;
     justify-content: space-between;
-    padding: var(--ppadding);
+    padding: var(--padding);
     background-color: var(--black-color);
     color: var(--white-color);
 }
@@ -90,27 +90,189 @@ header .icons .fa-search {
     max-width: 1000px; 
 }
 
-.info {
+/* Video info */
+body > .info {
     padding: var(--padding);
 }
 
 /* hashtag */
 /* 범위는 최대한 작게작게 들어가서 하는게 좋음 */
-.info .metadata .hashtags {
+.metadata .hashtags {
     display: flex;
     font-size: var(--font-small);
     color: var(--blue-color)
 }
 
-.info .metadata .hashtags li {
+.metadata .hashtags li {
     margin-right: var(--padding);
 }
 
-.info .metadata .titleAndButton {
+.metadata .titleAndButton {
     display: flex;
 }
 
 
-.info .metadata .titleAndButton .title {
+.metadata .titleAndButton .title {
     font-size: var(--font-medium);
+    margin-right: var(--padding);
+}
+
+.metadata .titleAndButton .title.clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    /* 2줄로 제한 */
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.metadata .titleAndButton .moreBtn {
+height: 100%;
+transition: transform 300ms ease-in-out;
+}
+
+.metadata .titleAndButton .moreBtn.clicked {
+  transform: rotate(180deg);
+}
+
+.views {
+    font-size: var(--font-small);
+    color: var(--grey-dark-color)
+}
+
+/* Action Buttons */
+
+.actions {
+    /* 옆으로 정렬은 flex */
+    display: flex; 
+    /* 간격을 골고루 넣고싶다 */
+    justify-content: space-around;
+    /* 위아래로 붙어있으니 위아래로 padding을 넣고 양옆을 0으로 없애준다. */
+    margin: var(--padding) 0;
+}
+
+.actions button {
+    display: flex;
+    /* 아이콘이 위로 텍스트가 아래로 */
+    flex-direction: column;
+    font-size: var(--font-small);
+    color:var(--grey-dark-color)
+}
+
+.actions button i {
+    /* margin을 위아래로는 지정하지않고 양옆을 auto로 작성하게 되면 중간으로 오게됨 */
+    margin: 0 auto;
+    /* 원래 패딩의 반만 쓰고싶으면 calc을 사용하면 된다. */
+    margin-bottom: calc(var(--padding) / 2);
+     /* 아이콘 크기 늘리자  */
+    font-size: 16px;
+}
+
+.actions button i.active {
+    color: var(--blue-color);
+}
+
+/* Channel */
+
+.channel {
+    display: flex;
+    /* 따로 떨어지게  */
+    justify-content: space-between;
+    /* 위 경계선 만들기 */
+    border-top: 1px solid var(--grey-dark-color);
+    /* 아래 경계선 만들기 */
+    border-bottom: 1px solid var(--grey-light-color);
+
+}
+
+.channel .metadata {
+    display: flex;
+    /* 아이콘 기준으로 중간으로 수직적으로 맞추기 */
+    align-items: center;
+}
+
+.channel .metadata .info {
+    display: flex;
+    /* 위아래로 문단 나누기 */
+    flex-direction: column;
+}
+
+.channel .metadata img {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    /* 아바타 이미지 동그랗게 50% 만 주면! */
+    border-radius: 50%;
+}
+
+.channel .metadata .info .name {
+    font-size: var(--font-medium);
+
+}
+
+.channel .metadata .info .subscribers {
+    font-size: var(--font-small);
+    color:var(--grey-dark-color)
+}
+
+.channel .subscribe {
+    /* 대문자 */
+    text-transform: uppercase;
+    color: var(--red-color);
+    font-size: var(--font-medium);
+}
+
+/* Up next */
+.upNext {
+    padding: 0 var(--padding);
+}
+
+.upNext >.title {
+    font-size:var(--font-medium);
+    color: var(--grey-dark-color);
+    margin-bottom: calc(var(--padding) / 2 );
+}
+
+.upNext .item {
+    display: flex;
+    margin-top: var(--padding);
+}
+
+.upNext .item .img {
+    flex: 1 1 35%;
+    margin-right: var(--padding);
+}
+
+.upNext .item .img img {
+    width: 100%;
+}
+
+.upNext .item .info {
+    flex: 1 1 60%;
+}
+
+.upNext .item .moreBtn {
+    flex: 1 1 5%;
+}
+
+.upNext .item .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.upNext .item .info .name,
+.upNext .item .info .views {
+    font-size: var(--font-micro);
+    color: var(--grey-dark-color);
+}
+
+.infoAndUpNext {
+    display: flex;
+    flex-direction: column;
+}
+
+/* media가 screen이고 min-width가 768px일때 */
+@media screen and (min-width: 768px) {
+    .infoAndUpNext{
+        flex-direction: row;
+        margin: var(--padding) 0;
+    }
 }
